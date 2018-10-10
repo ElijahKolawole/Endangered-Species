@@ -16,7 +16,7 @@ import static android.widget.AdapterView.*;
 
 public class MainActivity extends AppCompatActivity {
     final String TAG = MainActivity.class.getSimpleName().toString();
-    Integer[] Animals = {R.drawable.eagle, R.drawable.elephant, R.drawable.gorilla , R.drawable.panda, R.drawable.panther, R.drawable.polar};
+    Integer[] Animals = {R.drawable.eagle, R.drawable.elephant, R.drawable.gorilla, R.drawable.panda, R.drawable.panther, R.drawable.polar};
     ImageView pic;
 
 
@@ -35,15 +35,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(), "Selected Species " + (position + 1), Toast.LENGTH_LONG).show();
+                pic.setImageResource(Animals[position]);
             }
+
         });
 
     }
 
     public class ImageAdapter extends BaseAdapter {
         private Context context;
+
         public ImageAdapter(Context context) {
-             this.context = context ; // context is cusomized to hold context resources.
+            this.context = context; // context is cusomized to hold context resources.
 
         }
 
@@ -66,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            pic = findViewById(R.id.imgLarge);
+
             pic = new ImageView(context); //instance of image view
             pic.setImageResource(Animals[position]);
             pic.setScaleType(ImageView.ScaleType.FIT_XY);
             pic.setLayoutParams(new GridView.LayoutParams(330, 300));
-            return  pic;
+            return pic;
 
 
         }
